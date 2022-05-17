@@ -1,0 +1,15 @@
+{
+    "name": "ecakubi/ems",
+    "description": "Employee Management System",
+    "require": {
+        "doctrine/orm": "*",
+        "symfony/cache": "^6.0",
+        "doctrine/annotations": "^1.13"
+    },
+    "authors": [
+        {
+            "name": "Eric Clinton Appiah-Kubi",
+            "email": "ecakubi@gmail.com"
+        }
+    ]
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLA EMS Admin Dashboard</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" />
+
+    <link rel="stylesheet" href="C:\Users\Lawrence Quartey-Owo\Desktop\EMS\admin panel\style.css" />
+</head>
+
+<body>
+
+    <section id="menu">
+        <div class="logo">
+            <img src="images/adminlog.png">
+            <h2>Admin</h2>
+        </div>
+
+        <div class="items">
+            <li><i class="fad fa-chart-pie-alt"></i><a href="#">Dashboard</a></li>
+            <li><i class="fas fa-layer-plus"></i><a href="#">Add Employee</a></li>
+            <li><i class="fad fa-user-edit"></i><a href="#">Edit Employee Details</a></li>
+            <li class="active"><i class="fad fa-street-view"></i><a href="#">Leave Requests</a></li>
+            <li><i class="fad fa-bullhorn"></i><a href="#">Announcements</a></li>
+            <li><i class="fad fa-sign-out"></i><a href="#">Logout</a></li>
+        </div>
+    </section>
+
+    <section id="interface">
+      <div class="navigation">
+         <div class="n1">
+             <div>
+                 <i id="menu-btn" class="fas fa-bars"></i>
+             </div>
+             <div class="search">
+                 <i class="far fa-search"></i>
+                 <input type="text" placeholder="Search">
+             </div>
+         </div> 
+         <div class="profile">
+             <i class="far fa-bell"></i>
+             <img src="images/1.jpg" alt="">
+         </div>
+      </div>  
+
+      <h3 class="i-name">
+         Leave Requests
+      </h3>
+
+      <div class="values">
+          <div class="val-box">
+              <i class="fas fa-users"></i>
+              <div>
+                  <h3>85</h3>
+                  <span>Employees</span>
+              </div>
+          </div>
+          <div class="val-box">
+            <i class="fas fa-house-leave"></i>
+            <div>
+                <h3>12</h3>
+                <span>Leave Requests</span>
+            </div>
+        </div>
+        <div class="val-box">
+            <i class="fas fa-tasks"></i>
+            <div>
+                <h3>20</h3>
+                <span>Current Projects</span>
+            </div>
+        </div>
+        <div class="val-box">
+            <i class="fas fa-user-crown"></i>
+            <div>
+                <h3>13</h3>
+                <span>Clients</span>
+            </div>
+      </div>
+
+      <div class="board">
+        <table width="100%">
+           <thead>
+               <tr>
+                   <td>Name</td>
+                   <td>Department</td>
+                   <td>Leave Start</td>
+                   <td>Leave End</td>
+                   <td>Reason</td>
+                   <td></td>
+               </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                    <td class="people">
+                       <div class="people-de">
+                          <p>Norkor Duah</p> 
+                       </div>
+                    </td>
+
+                    <td>
+                        <p>Admin</p>
+                    </td>
+ 
+                    <td>
+                        <p>18th June</p> 
+                    </td>
+                    <td><p>4th July</p></td>
+ 
+                    <td>
+                        <p>Attending IAA Conference & Zonta Conference</p>
+                    </td>
+ 
+                    <td class="edit"><a href="#">Accept</a></td>
+                    <td class="edit"><a href="#">Decline</a></td>
+                </tr>  
+                   </tr>
+
+                   <tr>
+                    <td class="people">
+                       <div class="people-de">
+                          <p>Nana Adwoa</p> 
+                       </div>
+                    </td>
+
+                    <td>
+                        <p>Events</p>
+                    </td>
+ 
+                    <td>
+                        <p>2nd August</p> 
+                    </td>
+                    <td><p>10th August</p></td>
+ 
+                    <td>
+                        <p>Funeral for Grandma</p>
+                    </td>
+ 
+                    <td class="edit"><a href="#">Accept</a></td>
+                    <td class="edit"><a href="#">Decline</a></td>
+                </tr>  
+                   </tr>
+               </tbody>
+      </div>
+      </section>
+      </body>
+      </html>
