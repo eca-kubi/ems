@@ -1,18 +1,60 @@
 <?php
-    class User {
-        private $db;
 
-        public function __construct() {
-            $this->db = new Database;
-        }
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\OneToOne;
 
-        /* Test (database and table needs to exist before this works)
-        public function getUsers() {
-            $this->db->query("SELECT * FROM users");
+#[Entity]
+class User
+{
+    #[ID]
+    #[Column(name: 'id',type: Types::INTEGER)]
+    #[GeneratedValue]
+    private $id;
 
-            $result = $this->db->resultSet();
+    #[Column(name: 'first_name', type: Types::STRING, length: 25)]
+    private $firstName;
 
-            return $result;
-        }
-        */
+    #[Column(name: 'last_name', type: Types::STRING, length: 50)]
+    private $lastName;
+
+    #[Column(name: 'username', type: Types::STRING, length: 15)]
+    private $username;
+
+    #[Column(name: 'password_hash', type: Types::STRING, length: 200 )]
+    private $passwordHash;
+
+    #[Column(name: 'user_type', type: Types::STRING, length: 50)]
+    private $userType;
+
+    #[Column(name: 'profile_picture', type: Types::BLOB)]
+    private $profilePicture;
+
+    #[Column(name: 'created_by',type: Types::DATE_IMMUTABLE)]
+    private $createdBy;
+
+    #[Column(name: 'date_created',type: Types::DATE_IMMUTABLE)]
+    private $dateCreated;
+
+    #[Column(name: 'email',type: Types::STRING, length: 200)]
+    private $email;
+
+    #[Column(name: 'telephone',type: Types::STRING, length: 15)]
+    private $telephone;
+
+    #[OneToMany(mappedBy: 'user', targetEntity: 'Activity_Log')]
+    private $activityLogs;
+
+    #[OneToOne(mappedBy: 'user', targetEntity: 'Employee')]
+    private $employee;
+
+    public function __construct()
+    {
+        $this->activityLogs = new ArrayCollection();
     }
+}

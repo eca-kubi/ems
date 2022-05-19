@@ -17,11 +17,15 @@ const SITENAME = 'MullenLowe Accra Employee Management System';
 
 
 // ---- Initialize Doctrine Entity Manager
+use Doctrine\ORM\Configuration;
+use Doctrine\ORM\Mapping\Driver\AttributeDriver;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
 
-$paths = array(dirname(__DIR__)."/entities");
-$isDevMode = false;
+$paths = array(dirname(__DIR__)."/models");
+$isDevMode = true;
 
 // the connection configuration
 $dbParams = array(
@@ -31,16 +35,46 @@ $dbParams = array(
     'dbname' => DB_NAME,
 );
 
-$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+if ($isDevMode) {
+    $queryCache = new ArrayAdapter();
+    $metadataCache = new ArrayAdapter();
+} else {
+    $queryCache = new PhpFilesAdapter('doctrine_queries');
+    $metadataCache = new PhpFilesAdapter('doctrine_metadata');
+}
+
+//$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+$config = new Configuration();
+//$config = Setup::createAttributeMetadataConfiguration($paths, $isDevMode);
+
+// set metadata driver
+$driverImpl = new AttributeDriver($paths);
+$config->setMetadataDriverImpl($driverImpl);
+
+// set metadata cache
+$config->setMetadataCache($metadataCache);
 
 // set directory for proxies
-//$config->setProxyDir(dirname(__DIR__)."/proxies");
+$config->setProxyDir(dirname(__DIR__)."/proxies");
+
+// set proxy namespace
+$config->setProxyNamespace('App\Proxies');
+
+// set query cache
+$config->setQueryCache($queryCache);
+
+if ($isDevMode) {
+    $config->setAutoGenerateProxyClasses(true);
+} else {
+    $config->setAutoGenerateProxyClasses(false);
+}
 
 $entityManager = EntityManager::create($dbParams, $config);
 
 // ---- Initialize Doctrine Entity Manager
 
-function GetEntityManager(){
+function GetEntityManager(): EntityManager
+{
     global $entityManager;
     return $entityManager;
 }
