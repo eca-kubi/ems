@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
-#[Entity]
+#[Entity(repositoryClass: 'EmployeeRepository')]
 class Employee
 {
     #[ID]
@@ -46,14 +46,14 @@ class Employee
     #[OneToMany(mappedBy: 'employee',targetEntity: 'Education')]
     private $educations;
 
-    #[OneToMany(mappedBy: 'employee',targetEntity: 'Emergency_Contact')]
+    #[OneToMany(mappedBy: 'employee',targetEntity: 'EmergencyContact')]
     private $emergencyContacts;
 
     #[ManyToOne(targetEntity: 'Department',inversedBy: 'employees')]
     #[JoinColumn('department_id','id')]
     private $department;
 
-    #[OneToMany(mappedBy: 'employee',targetEntity: 'Employee_Leave')]
+    #[OneToMany(mappedBy: 'employee',targetEntity: 'EmployeeLeave')]
     private $employeeLeaves;
 
     public function __construct()

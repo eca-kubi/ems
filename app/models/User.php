@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 
-#[Entity]
+#[Entity(repositoryClass: 'UserRepository')]
 class User
 {
     #[ID]
@@ -29,6 +29,7 @@ class User
     #[Column(name: 'password_hash', type: Types::STRING, length: 200 )]
     private $passwordHash;
 
+    // This would indicate the type of user whether admin or normal user
     #[Column(name: 'user_type', type: Types::STRING, length: 50)]
     private $userType;
 
@@ -47,7 +48,7 @@ class User
     #[Column(name: 'telephone',type: Types::STRING, length: 15)]
     private $telephone;
 
-    #[OneToMany(mappedBy: 'user', targetEntity: 'Activity_Log')]
+    #[OneToMany(mappedBy: 'user', targetEntity: 'ActivityLog')]
     private $activityLogs;
 
     #[OneToOne(mappedBy: 'user', targetEntity: 'Employee')]

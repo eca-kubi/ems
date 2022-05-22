@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 
-#[Entity]
-class Employee_Leave
+#[Entity(repositoryClass: 'EmployeeLeaveRepository')]
+class EmployeeLeave
 {
     #[Id]
     #[Column(name: 'id', type: Types::INTEGER)]

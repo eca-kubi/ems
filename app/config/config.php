@@ -7,13 +7,13 @@ const DB_NAME = 'ems'; //Add your DB Name
 const DB_DRIVER = 'pdo_mysql';
 
 //APP ROOT
-define('APPROOT', dirname(dirname(__FILE__)));
+define('APP_ROOT', dirname(dirname(__FILE__)));
 
 //URL ROOT (Dynamic links)
-const URLROOT = 'http://localhost/ems';
+const URL_ROOT = 'http://localhost/ems';
 
 //Site name
-const SITENAME = 'MullenLowe Accra Employee Management System';
+const SITE_NAME = 'MullenLowe Accra Employee Management System';
 
 
 // ---- Initialize Doctrine Entity Manager

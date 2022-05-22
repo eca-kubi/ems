@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 
-#[Entity]
-class Emergency_Contact
+#[Entity(repositoryClass: 'EmergencyContactRepository')]
+class EmergencyContact
 {
     #[Id]
     #[GeneratedValue]

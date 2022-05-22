@@ -5,7 +5,11 @@ spl_autoload_register(static function ($class_name) {
     $dirs = array(
         __DIR__ . "\models",
         __DIR__ . "\libraries",
-        __DIR__ . "\classes"
+        __DIR__ . "\classes",
+        __DIR__ . "\dtos",
+        __DIR__ . '\enums',
+        __DIR__ . "\helpers",
+        __DIR__ . '\exceptions',
     );
     foreach ($dirs as $dir) {
         $path = "$dir\\$class_name.php";

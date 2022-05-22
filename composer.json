@@ -4,7 +4,8 @@
     "require": {
         "doctrine/orm": "*",
         "symfony/cache": "^6.0",
-        "doctrine/annotations": "^1.13"
+        "doctrine/annotations": "^1.13",
+        "spatie/data-transfer-object": "^3.7"
     },
     "authors": [
         {

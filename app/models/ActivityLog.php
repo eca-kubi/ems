@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 
-#[Entity]
-class Activity_Log
+#[Entity(repositoryClass: 'ActivityLogRepository')]
+class ActivityLog
 {
     #[Id]
     #[Column(name: 'id', type: Types::INTEGER)]

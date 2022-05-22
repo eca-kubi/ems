@@ -2,12 +2,12 @@
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\OneToOne;
 
-#[\Doctrine\ORM\Mapping\Entity]
+#[Entity(repositoryClass: 'EducationRepository')]
 class Education
 {
     #[Id]
