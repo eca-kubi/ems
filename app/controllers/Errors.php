@@ -1,10 +1,6 @@
 <?php
 class Errors extends Controller
 {
-    public function __construct()
-    {
-    }
-
     public function index($error_code =  200)
     {
         $title = '200';

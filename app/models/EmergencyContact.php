@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 
+#[\Doctrine\ORM\Mapping\Table(name: 'emergency_contact')]
 #[Entity(repositoryClass: 'EmergencyContactRepository')]
 class EmergencyContact
 {

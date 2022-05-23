@@ -1,17 +1,18 @@
 <?php
 
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
+
 class UserAccountManager
 {
-    public function login($email, $password){
-        // password, email
-        // ask user repository find the user with this email address
-        $user = UserRepository::findByEmail(['email', $email]);
-        if($user->password == $password) {
-            // Authenticate successfully
-            FlashMessageManager::setFlash(PageId::ADMIN_LOGIN, FlashMessageType::SUCCESS, 'Login successfully!');
-        } else {
-            FlashMessageManager::setFlash(PageId::ADMIN_LOGIN, FlashMessageType::DANGER, 'Login failed!');
+    /**
+     */
+    public static function authenticate(string $username, string $password): bool{
+
+        $user =  UserRepository::instance()->findOneBy(['email' => trim($username)]);
+        if ($user) {
+            return password_verify($password, $user->getPasswordHash());
         }
+        return false;
     }
 
     public function createUserAccount()
@@ -19,16 +20,29 @@ class UserAccountManager
 
     }
 
-    public function disableUserAccount(){}
 
-    public static function isUserAnAdmin($criteria = ['email' =>'ecakubi@ems.com'])
+    public static function isUserAnAdmin(string $username): bool
     {
-        $user = UserRepository::findByEmail($criteria);
-        if($user->type == UserType::ADMIN){
-            return true;
-        } else {
-            return false;
-        }
+        $userType = UserRepository::instance()->findOneBy(['email' => $username])?->getUserType();
+        return $userType == UserType::ADMIN->value;
     }
+
+    public static function hasUserLoggedIn(): bool
+    {
+        return SessionManager::getInstance()->get('userHasLoggedIn');
+    }
+
+    public static function saveLoginSession(string $username): void
+    {
+        $session = SessionManager::getInstance();
+        $session->set('userHasLoggedIn', true);
+        $session->set('username', $username);
+    }
+
+    public static function getCurrentUser(): ?User
+    {
+        return UserRepository::instance()->findOneBy(['username' => SessionManager::getInstance()->get('username')]);
+    }
+
 
 }

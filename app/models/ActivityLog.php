@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 
+#[\Doctrine\ORM\Mapping\Table(name: 'activity_log')]
 #[Entity(repositoryClass: 'ActivityLogRepository')]
 class ActivityLog
 {
@@ -25,4 +26,14 @@ class ActivityLog
     #[ManyToOne(targetEntity: 'User', inversedBy: 'activityLogs')]
     #[JoinColumn('user_id', referencedColumnName: 'id')]
     private $user;
+
+    public function __construct(User $user)
+    {
+        $this->createdBy($user);
+    }
+
+    public function createdBy(User $user): void
+    {
+        $this->user = $user;
+    }
 }

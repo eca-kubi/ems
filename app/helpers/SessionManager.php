@@ -12,9 +12,9 @@ class SessionManager
 
 
     /**
-     * @return SessionManager|null
+     * @return SessionManager
      */
-    public static function getInstance(): ?SessionManager
+    public static function getInstance(): SessionManager
     {
         if ( !isset(self::$instance))
         {
@@ -114,6 +114,17 @@ class SessionManager
     {
        return array_key_exists($name, $_SESSION);
     }
+
+    /**
+     * Get the current session id
+     * @return bool|string
+     */
+    public function getSessionId(): bool|string
+    {
+        return session_id();
+    }
+
+
 
 }
 

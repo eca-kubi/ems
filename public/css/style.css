@@ -11,9 +11,21 @@
     background-position: center;
 }
 
-.welcome-banner {
+.header-error {
+    height: 69vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.center-vh {
     position: absolute;
     top: 30%;
+    left: 50%;
+    transform: translate(-50%);
+}
+.center-vh-t-50 {
+    position: absolute;
+    top: 50%;
     left: 50%;
     transform: translate(-50%);
 }
@@ -26,6 +38,11 @@ ul li a:hover {
 ul li.active a {
     background-color: black;
     color: white;
+}
+
+hr {
+    border: solid 1px #856404!important;
+    width: 25%;
 }
 
 /*ul {

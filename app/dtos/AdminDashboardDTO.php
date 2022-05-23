@@ -2,14 +2,15 @@
 
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
-class AdminLoginDTO extends PageDTO
+class AdminDashboardDTO extends PageDTO
 {
     /**
      * @throws UnknownProperties
      */
     public function __construct(
-        public string $title = 'Admin Login',
-        public PageId $pageId = PageId::ADMIN_LOGIN
+        public string $title = 'Admin Dashboard',
+        public PageId $pageId = PageId::ADMIN_DASHBOARD,
+        public string $url = ''
     )
     {
         parent::__construct();

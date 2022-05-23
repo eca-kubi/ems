@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 class Employee
 {
     #[ID]
-    #[Column(name: 'Id',type: Types::INTEGER)]
+    #[Column(name: 'id',type: Types::INTEGER)]
     #[GeneratedValue]
     private $id;
 

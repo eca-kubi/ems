@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 
+#[\Doctrine\ORM\Mapping\Table(name: 'employee_leave')]
 #[Entity(repositoryClass: 'EmployeeLeaveRepository')]
 class EmployeeLeave
 {

@@ -5,10 +5,8 @@ class Home extends Controller {
     }
 
     public function index() {
-        $data = [
-            'title' => 'Home'
-        ];
+        $dto = new HomeDTO();
 
-        $this->view('home/index', $data);
+        $this->view('home/index', $dto->toArray());
     }
 }
