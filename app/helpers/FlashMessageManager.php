@@ -50,7 +50,6 @@ class FlashMessageManager
             $flash = FlashMessageManager::getFlash($pageId);
             $alertType = $flash->type->value;
             echo <<<template
-<div class="p-2 flash">
         <div class="alert alert-$alertType alert-dismissible text-sm m-auto" role="alert">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
   <span aria-hidden="true">&times;</span>
@@ -58,7 +57,7 @@ class FlashMessageManager
             $flash->message
             </h4>
         </div>
- </div>
+
 template;
             if ($unsetFlash){
                 self::unsetFlash($pageId);

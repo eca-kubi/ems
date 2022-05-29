@@ -16,51 +16,41 @@ class User
     #[ID]
     #[Column(name: 'id', type: Types::INTEGER)]
     #[GeneratedValue]
-    private int $id;
+    private $id;
 
     #[Column(name: 'first_name', type: Types::STRING, length: 25)]
-    private string $firstName;
+    private $firstName;
 
     #[Column(name: 'last_name', type: Types::STRING, length: 50)]
-    private string $lastName;
+    private  $lastName;
 
-    #[Column(name: 'username', type: Types::STRING, length: 15)]
-    private string $username;
-
-    #[Column(name: 'password_hash', type: Types::STRING, length: 200)]
-    private string $passwordHash;
+    #[Column(name: 'password_hash', type: Types::STRING, length: 500)]
+    private  $passwordHash;
 
     // This would indicate the type of user whether admin or normal user
     #[Column(name: 'user_type', type: Types::STRING, length: 50)]
-    private string $userType;
-
-    #[Column(name: 'profile_picture', type: Types::BLOB)]
-    private $profilePicture;
+    private  $userType;
 
     #[Column(name: 'email', type: Types::STRING, length: 200)]
-    private string $email;
+    private  $email;
 
     #[Column(name: 'telephone', type: Types::STRING, length: 15)]
-    private string $telephone;
+    private  $telephone;
 
-    #[OneToMany(mappedBy: 'user', targetEntity: 'ActivityLog')]
-    private Collection $activityLogs;
+    #[Column(name: 'active', type: Types::BOOLEAN)]
+    private ?bool $active = true;
 
-    #[OneToOne(mappedBy: 'user', targetEntity: 'Employee')]
-    private self $employee;
+    /*#[OneToOne(mappedBy: 'user', targetEntity: 'Employee')]
+    private $employee;*/
 
-    #[OneToMany(mappedBy: 'user', targetEntity: 'UserSession')]
-    private Collection $userSessions;
-
-    #[Column(name: 'created_at',type: Types::DATETIME_IMMUTABLE, options: ['default'=> 'CURRENT_TIMESTAMP'])]
-    private DateTimeImmutable $createdAt;
+    #[Column(name: 'created_at', type: Types::DATETIME_IMMUTABLE, options: ['default'=> 'CURRENT_TIMESTAMP'])]
+    private ?DateTimeImmutable $createdAt;
 
     public function __construct()
     {
-        $this->activityLogs = new ArrayCollection();
-        $this->userSessions = new ArrayCollection();
+        $this->userType = UserType::NON_ADMIN->value;
+        $this->createdAt = new DateTimeImmutable();
     }
-
     /**
      * @return int
      */
@@ -88,14 +78,6 @@ class User
     /**
      * @return string
      */
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    /**
-     * @return string
-     */
     public function getPasswordHash(): string
     {
         return $this->passwordHash;
@@ -107,14 +89,6 @@ class User
     public function getUserType(): string
     {
         return $this->userType;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProfilePicture(): mixed
-    {
-        return $this->profilePicture;
     }
 
     /**
@@ -133,21 +107,11 @@ class User
         return $this->telephone;
     }
 
-    /**
-     * @return ArrayCollection|Collection
-     */
-    public function getActivityLogs(): ArrayCollection|Collection
-    {
-        return $this->activityLogs;
-    }
 
-    /**
-     * @return User
-     */
-    public function getEmployee(): User
+/*    public function getEmployee(): Employee
     {
         return $this->employee;
-    }
+    }*/
 
     /**
      * @return DateTimeImmutable
@@ -157,13 +121,27 @@ class User
         return $this->createdAt;
     }
 
-    public function ownsSession(UserSession $session): void
+    /**
+     * @return mixed
+     */
+    public function getActive() : bool
     {
-        $this->userSessions[] = $session;
+        return $this->active;
     }
 
-    public function addActivityLog(ActivityLog $activityLog): void
+    public function getFullName() : string
     {
-        $this->activityLogs[] = $activityLog;
+        return $this->firstName . ' '. $this->lastName;
+    }
+
+    public function getPhone() : string
+    {
+        return $this->telephone;
+    }
+
+    public function __set($property, $value) {
+        if (property_exists($this, $property)) {
+            $this->$property = $value;
+        }
     }
 }

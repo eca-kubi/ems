@@ -15,6 +15,8 @@ const URL_ROOT = 'http://localhost/ems';
 //Site name
 const SITE_NAME = 'MullenLowe Accra Employee Management System';
 
+const SITE_NAME_ABBREVIATION = 'MLA EMS';
+
 
 // ---- Initialize Doctrine Entity Manager
 use Doctrine\ORM\Configuration;

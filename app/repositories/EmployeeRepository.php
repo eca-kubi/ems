@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\ORM\Query\Expr\Join;
 
 
 /**
@@ -10,4 +11,89 @@
  */
 class EmployeeRepository extends Doctrine\ORM\EntityRepository
 {
+    public function updateEmployeeById(string $id, array $data): bool
+    {
+        /** @var Employee $employee */
+        $employee = $this->find($id);
+
+        if ($employee) {
+            // email/username cannot be updated
+            unset($data['email']);
+            $user = $employee->getUser();
+            $department = DepartmentRepository::instance()->find($data['department']);
+            $employee->department = $department;
+            $employee->setBorn($data['born']);
+            unset($data['id']);
+            unset($data['department']);
+            unset($data['born']);
+
+            foreach ($data as $key => $datum) {
+                $employee->{$key} = $datum;
+                $user->{$key} = $datum;
+            }
+            $this->_em->persist($employee);
+            $this->_em->flush();
+            return true;
+        }
+        return false;
+    }
+
+
+    public function createEmployee(array $data): bool
+    {
+        $employee = new Employee;
+        $user = new User;
+        $department = DepartmentRepository::instance()->find((int)$data['department']);
+        unset($data['department']);
+        $employee->setUser($user);
+        $employee->setDepartment($department);
+        foreach ($data as $key => $datum) {
+            $employee->{$key} = $datum;
+            $user->{$key} = $datum;
+        }
+        $this->_em->persist($employee);
+        $this->_em->flush();
+        return true;
+    }
+
+    public function disableAccount($id): bool
+    {
+        /** @var Employee $employee */
+        $employee = $this->find($id);
+        if ($employee) {
+            $user = $employee->getUser();
+            $user->active = 0;
+            $this->_em->flush();
+            return true;
+        }
+        return false;
+    }
+
+    public function getActiveEmployees()
+    {
+        $qb = GetEntityManager()->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('Employee', 'e')
+            ->leftJoin(
+                'User',
+                'u',
+                Join::WITH,
+                'e.user = u.id'
+            )
+            ->where('u.active = 1')
+            ->orderBy('u.createdAt', 'DESC');
+
+       return $qb->getQuery()->getResult();
+    }
+
+    public static function instance(): EmployeeRepository
+    {
+        return new static(GetEntityManager(), GetEntityManager()->getClassMetadata('Employee'));
+    }
+
+    public function findOneBy(array $criteria, ?array $orderBy = null) : Employee | null
+    {
+        return parent::findOneBy($criteria, $orderBy);
+    }
 }

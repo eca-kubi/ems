@@ -13,4 +13,5 @@ enum PageId: string
     case LOGOUT = 'logout';
     case EDIT_EMPLOYEE_DETAILS = 'edit_employee_details';
     case ADD_EMPLOYEE  = 'add_employee';
+    case EMPLOYEE_DASHBOARD = 'employee_dashboard';
 }

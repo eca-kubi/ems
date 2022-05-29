@@ -11,6 +11,8 @@ spl_autoload_register(static function ($class_name) {
         __DIR__ . "\helpers",
         __DIR__ . '\exceptions',
         __DIR__ . '\repositories',
+        __DIR__ . '\traits',
+        __DIR__ . '\properties',
     );
     foreach ($dirs as $dir) {
         $path = "$dir\\$class_name.php";

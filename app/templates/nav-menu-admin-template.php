@@ -1,8 +1,8 @@
 <?php
 /** @var PageDTO $dto */
 ?>
-<div class="container font-weight-bold bg-secondary fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container font-weight-bold  fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <a class="navbar-brand" href="#"><img class="bimg-fluid" src="<?php echo URL_ROOT ?>/public/img/logo.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,8 +17,8 @@
                             href="<?php echo URL_ROOT ?>/contact"><i class="fad fa-phone-alt"></i> Contact</a></li>
                 <li class="<?php echo $dto->pageId->value == PageIdsDTO::ADMIN_DASHBOARD ? 'active' : ''; ?> nav-item"><a class="nav-link"
                             href="<?php echo URLs::ADMIN_DASHBOARD ?>"><i class="fad fa-chart-pie-alt"></i> Admin Dashboard</a></li>
-                <li class="<?php echo $dto->pageId->value == PageIdsDTO::LOGOUT ? 'active' : ''; ?> nav-item"><i class="fa fa-logout"></i><a class="nav-link"
-                            href="<?php echo URL_ROOT ?>/logout"> Logout</a></li>
+                <li class="<?php echo $dto->pageId->value == PageIdsDTO::LOGOUT ? 'active' : ''; ?> nav-item"><a class="nav-link"
+                            href="<?php echo URL_ROOT ?>/logout"><i class="fa fa-door-open"></i> Logout</a></li>
 
                 <!--<li><i class="fad fa-chart-pie-alt"></i><a href="#">Dashboard</a></li>
                 <li><i class="fas fa-layer-plus"></i><a href="#">Add Employee</a></li>

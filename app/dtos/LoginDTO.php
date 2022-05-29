@@ -4,7 +4,7 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class LoginDTO extends PageDTO
 {
-    const USERNAME = 'username';
+    const EMAIL = 'email';
     const PASSWORD = 'password';
     const DUMMY_PASSWORD = 'rasmuslerdorf';
     const DUMMY_USER = 'ecakubi@ems.com';
@@ -15,7 +15,7 @@ class LoginDTO extends PageDTO
     public function __construct(
         public string $title = 'Admin Login',
         public PageId $pageId = PageId::ADMIN_LOGIN,
-        public string $username = '',
+        public string $email = '',
         public string $password = '',
         public string $url = ''
     )

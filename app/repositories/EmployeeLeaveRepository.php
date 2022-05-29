@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -10,4 +11,18 @@
  */
 class EmployeeLeaveRepository extends Doctrine\ORM\EntityRepository
 {
+    public static function instance(): EmployeeLeaveRepository
+    {
+        return new static(GetEntityManager(), GetEntityManager()->getClassMetadata('EmployeeLeave'));
+    }
+
+    public function findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null) : ArrayCollection | array
+    {
+        return parent::findBy($criteria, $orderBy, $limit, $offset);
+    }
+
+    public function find($id, $lockMode = null, $lockVersion = null) : EmployeeLeave | null
+    {
+        return parent::find($id, $lockMode, $lockVersion);
+    }
 }

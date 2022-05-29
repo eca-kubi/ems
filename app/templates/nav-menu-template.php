@@ -15,9 +15,9 @@
                 <li class="<?php echo $dto->pageId->value == PageIdsDTO::CONTACT ? 'active' : ''; ?> nav-item"><a class="nav-link"
                             href="<?php echo URL_ROOT ?>/contact"><i class="fad fa-phone-alt"></i> Contact</a></li>
                 <li class="<?php echo $dto->pageId->value == PageIdsDTO::ADMIN_LOGIN ? 'active' : ''; ?> nav-item"><a class="nav-link"
-                            href="<?php echo URL_ROOT ?>/admin/login"><i class="fad fa-chart-pie-alt"></i> Admin Login</a></li>
+                            href="<?php echo URL_ROOT ?>/admin/dashboard"><i class="fad fa-chart-pie-alt"></i> Admin</a></li>
                 <li class="<?php echo $dto->pageId->value == PageIdsDTO::EMPLOYEE_LOGIN ? 'active' : ''; ?> nav-item"><a class="nav-link"
-                            href="<?php echo URL_ROOT ?>/employees/login"><i class="fad fa-login"></i> Employee Login</a></li>
+                            href="<?php echo URL_ROOT ?>/employees/dashboard"><i class="fa fa-user-chart"></i> Employee</a></li>
             </ul>
         </div>
     </nav>

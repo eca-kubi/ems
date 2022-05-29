@@ -6,9 +6,9 @@ class UserAccountManager
 {
     /**
      */
-    public static function authenticate(string $username, string $password): bool{
+    public static function authenticate(string $email, string $password): bool{
 
-        $user =  UserRepository::instance()->findOneBy(['email' => trim($username)]);
+        $user =  UserRepository::instance()->findOneBy(['email' => trim($email)]);
         if ($user) {
             return password_verify($password, $user->getPasswordHash());
         }
@@ -21,27 +21,27 @@ class UserAccountManager
     }
 
 
-    public static function isUserAnAdmin(string $username): bool
+    public static function isUserAnAdmin(string $email): bool
     {
-        $userType = UserRepository::instance()->findOneBy(['email' => $username])?->getUserType();
+        $userType = UserRepository::instance()->findOneBy(['email' => $email])?->getUserType();
         return $userType == UserType::ADMIN->value;
     }
 
-    public static function hasUserLoggedIn(): bool
+    public static function hasUserLoggedIn(): bool | null
     {
         return SessionManager::getInstance()->get('userHasLoggedIn');
     }
 
-    public static function saveLoginSession(string $username): void
+    public static function saveLoginSession(string $email): void
     {
         $session = SessionManager::getInstance();
         $session->set('userHasLoggedIn', true);
-        $session->set('username', $username);
+        $session->set('email', $email);
     }
 
     public static function getCurrentUser(): ?User
     {
-        return UserRepository::instance()->findOneBy(['username' => SessionManager::getInstance()->get('username')]);
+        return UserRepository::instance()->findOneBy(['email' => SessionManager::getInstance()->get('email')]);
     }
 
 

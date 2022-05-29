@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\OneToMany;
 
 #[Entity(repositoryClass: 'DepartmentRepository')]
 class Department
@@ -18,11 +19,32 @@ class Department
     #[Column(name: 'name', type: Types::STRING, length: 50)]
     private $name;
 
-    #[\Doctrine\ORM\Mapping\OneToMany(mappedBy: 'department',targetEntity: 'Employee')]
-    private $employees;
-
-    public function __construct()
+    /**
+     * @return mixed
+     */
+    public function getId() : int
     {
-        $this->employees = new ArrayCollection();
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName() :string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 }

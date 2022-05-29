@@ -5,6 +5,7 @@
 <head>
     <title><?php /** @var LoginDTO $dto */
         echo $dto->title; ?></title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo URL_ROOT ?>/public/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo URL_ROOT ?>/public/css/bootstrap.min.css">
 </head>
@@ -16,14 +17,14 @@
             <?php /** @var LoginDTO $dto */
             FlashMessageManager::showFlashMessage($dto->pageId);
             ?>
-            <div class="col-3"><img class="img-fluid" src="<?php echo URL_ROOT ?>/public/img/adminlog.png" alt=""></div>
+            <div class="col-3"><img class="img-fluid" src="<?php echo URL_ROOT ?>/public/img/<?php echo $dto->pageId == PageId::ADMIN_LOGIN?'adminlog.png' : 'employee.png' ?>" alt=""></div>
             <div class="col-9"><h1 class="h2 text-center">Welcome to <small>MLA EMS <?php echo ($dto->pageId == PageId::ADMIN_LOGIN)? '- ADMIN' : '- EMPLOYEE' ?></small></h1></div>
             <hr/>
             <form class="p-2 needs-validation" action="<?php echo $dto->url ?>" method="post" novalidate>
                 <div class="form-group row">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" required class="form-control" id="exampleInputEmail1"
-                           value="<?php echo $dto::DUMMY_USER ?>" name="<?php echo $dto::USERNAME ?>"
+                           value="<?php echo $dto::DUMMY_USER ?>" name="<?php echo $dto::EMAIL ?>"
                            aria-describedby="emailHelp"
                            placeholder="Enter email">
                     <div class="invalid-feedback">
@@ -54,25 +55,7 @@
 <script src="<?php echo URL_ROOT ?>/public/js/jquery-3.3.1.slim.min.js"></script>
 <script src="<?php echo URL_ROOT ?>/public/js/popper.min.js"></script>
 <script src="<?php echo URL_ROOT ?>/public/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-        'use strict';
-        window.addEventListener('load', function () {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
+<script src="<?php echo URL_ROOT ?>/public/js/custom.js"></script>
+
 </body>
 </html>
